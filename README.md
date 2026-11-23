@@ -38,7 +38,7 @@ Certifique-se de ter instalado:
 - [Git](https://git-scm.com/downloads)
 
 ```bash
-git clone https://github.com/eduzx-afk/LibraryAPI
+git clone https://github.com/eduzx-afk/LibraryAPI.git
 cd LibraryAPI
 dotnet restore
 dotnet tool install --global dotnet-ef
