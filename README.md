@@ -1,4 +1,4 @@
-# LibraryAPI — Sistema de Gerenciamento de Biblioteca
+# LibraryAPI
 
 Projeto acadêmico desenvolvido para a disciplina de **Algoritmos e Estrutura de Dados II**, da Faculdade UniSapiens.
 
