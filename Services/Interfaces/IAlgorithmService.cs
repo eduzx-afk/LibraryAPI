@@ -9,5 +9,7 @@ public interface AlgorithmService
 
     Task<Book?> BinarySearchByISBNAsync(string isbn);
 
+    Task<Book?> QuickSelectAsync(int k, BookSortCriteria criteria);
+
     Task<List<Book>> SortBooksAsync(BookSortCriteria criteria);
 }

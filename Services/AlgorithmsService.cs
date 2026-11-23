@@ -3,6 +3,7 @@ using LibraryAPI.Models;
 using LibraryAPI.Enums;
 using LibraryAPI.Algorithms.Searching;
 using LibraryAPI.Algorithms.Sorting;
+using LibraryAPI.Algorithms.Selection;
 using LibraryAPI.Services.Interfaces;
 using LibraryAPI.Data;
 
@@ -24,6 +25,20 @@ public class DefaultAlgorithmService(LibraryDbContext context) : AlgorithmServic
         var books = await SortBooksAsync(BookSortCriteria.ISBN);
 
         return BinarySearch.SearchByISBN(books, isbn);
+    }
+
+    public async Task<Book?> QuickSelectAsync(
+        int k,
+        BookSortCriteria criteria
+    )
+    {
+        var books = await GetBooks();
+
+        return QuickSelect.Select(
+            books,
+            k,
+            criteria
+        );
     }
 
     public async Task<List<Book>> SortBooksAsync(

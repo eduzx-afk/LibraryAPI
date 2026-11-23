@@ -51,6 +51,30 @@ public class AlgorithmController(AlgorithmService service) : ControllerBase
         return Ok(response);
     }
 
+    // GET: api/algorithm/quickselect?k=2&criteria=PublicationYear
+    [HttpGet("selection/quickselect")]
+    public async Task<ActionResult<BookResponseDTO>> QuickSelect(
+        [FromQuery] int k,
+        [FromQuery] BookSortCriteria criteria)
+    {
+        if (!Enum.IsDefined(typeof(BookSortCriteria), criteria))
+        return BadRequest("Critério de seleção inválido.");
+
+    try
+    {
+        var book = await _service.QuickSelectAsync(k, criteria);
+
+        if (book == null)
+            return NotFound();
+
+        return Ok(MapToDTO(book));
+    }
+    catch (ArgumentOutOfRangeException ex)
+    {
+        return BadRequest();
+    }
+    }
+
     private static BookResponseDTO MapToDTO(Book book)
     {
         return new BookResponseDTO(
