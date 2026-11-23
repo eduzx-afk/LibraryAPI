@@ -1,0 +1,15 @@
+bin/
+obj/
+.vs/
+.idea/
+.vscode/
+*.user
+*.suo
+*.log
+.DS_Store
+Thumbs.db
+
+# SQLite
+*.db
+*.db-shm
+*.db-wal
