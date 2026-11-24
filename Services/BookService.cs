@@ -62,21 +62,21 @@ public class DefaultBookService(LibraryDbContext context) : BookService
 
     private bool IsValidISBN13(string isbn)
     {
-        if (isbn.Length != 13 || !isbn.All(char.IsDigit))
+        if (isbn is null || isbn.Length != 13 || !isbn.All(c => c >= '0' && c <= '9'))
             return false;
-        
+
         int sum = 0;
 
         for (int i = 0; i < 12; i++)
         {
             int digit = isbn[i] - '0';
-            sum = digit * (i % 2 == 0 ? 1 : 3);
+            sum += digit * (i % 2 == 0 ? 1 : 3);
         }
 
         int checkDigit = (10 - (sum % 10)) % 10;
-
-        return checkDigit == (isbn[12] - '0');
+        return checkDigit == isbn[12] - '0';
     }
+
 
     public async Task<bool> UpdateBookAsync(
         int id, 
